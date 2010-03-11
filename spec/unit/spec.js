@@ -16,13 +16,13 @@ describe 'Class'
     end
     
     describe '#constructor'
-      it 'should reflect the class not passed'
+      it 'should reflect the class when a constructor is not provided'
         var User = new Class
         var tj = new User
         tj.constructor.should.equal User
       end
       
-      it 'should reflect the class passed'
+      it 'should reflect the class when a constructor is provided'
         var User = new Class({
           constructor: function(name) {
             this.name = name
@@ -88,12 +88,20 @@ describe 'Class'
             bar: 'bar',
             constructor: function(name){
               this.name = name.toUpperCase()
+              //User.prototype.constructor.call(this, name.toUpperCase())
             },
             
             toString: function(){
               return '[Admin ' + this.name + ']'
             }
           })
+        end
+        
+        it 'should respond to instanceof properly'
+          (new User('tj')).should.be_an_instance_of User
+          (new User('tj')).should.not.be_an_instance_of Admin
+          (new Admin('tj')).should.be_an_instance_of User
+          (new Admin('tj')).should.be_an_instance_of Admin
         end
         
         it 'should call constructors properly'
