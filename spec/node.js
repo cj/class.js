@@ -2,7 +2,7 @@
 require.paths.unshift('spec', './spec/lib', 'lib')
 require('jspec')
 require('unit/spec.helper')
-Class = require('oo').Class
+Class = require('class').Class
 
 JSpec
   .exec('spec/unit/spec.js')

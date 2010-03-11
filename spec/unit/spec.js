@@ -71,5 +71,42 @@ describe 'Class'
       end
     end
     
+    describe 'subclassing'
+      describe 'once'
+        before_each
+          User = new Class({
+            foo: 'foo',
+            constructor: function(name){
+              this.name = name
+            },
+            toString: function(){
+              return '[User ' + this.name + ']'
+            }
+          })
+          
+          Admin = User.extend({
+            bar: 'bar',
+            constructor: function(name){
+              this.name = name.toUpperCase()
+            },
+            
+            toString: function(){
+              return '[Admin ' + this.name + ']'
+            }
+          })
+        end
+        
+        it 'should call constructors properly'
+          (new User('tj')).toString().should.eql '[User tj]'
+          (new Admin('tj')).toString().should.eql '[Admin TJ]'
+        end
+        
+        it 'should inherit properties properly'
+          (new User('tj')).foo.should.eql 'foo'
+          (new Admin('tj')).bar.should.eql 'bar'
+        end
+      end
+    end
+    
   end
 end
