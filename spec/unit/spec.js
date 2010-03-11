@@ -87,8 +87,7 @@ describe 'Class'
           Admin = User.extend({
             bar: 'bar',
             constructor: function(name){
-              this.name = name.toUpperCase()
-              //User.prototype.constructor.call(this, name.toUpperCase())
+              User.call(this, name.toUpperCase())
             },
             
             toString: function(){
