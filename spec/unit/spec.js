@@ -42,5 +42,34 @@ describe 'Class'
         tj.name.should.eql 'tj'
       end
     end
+    
+    describe 'getters'
+      it 'should work'
+        var User = new Class({
+          get name(){
+            return this.__name__ || 'none'
+          }
+        })
+        var tj = new User
+        tj.name.should.eql 'none'
+      end
+    end
+    
+    describe 'setters'
+      it 'should work'
+        var User = new Class({
+          get name(){
+            return this.__name__ || 'none'
+          },
+          set name(val){
+            this.__name__ = val.toUpperCase()
+          }
+        })
+        var tj = new User
+        tj.name = 'tj'
+        tj.name.should.eql 'TJ'
+      end
+    end
+    
   end
 end
