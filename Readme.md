@@ -3,6 +3,13 @@
 
   High performance classical inheritance for **node.js**.
 
+## Installation
+
+  Install the [Kiwi package manager for nodejs](http://github.com/visionmedia/kiwi)
+  and run:
+  
+      $ kiwi -v install class
+
 ## How &amp; Why
 
 Without wasting performance on cross-browser functionality,
