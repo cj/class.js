@@ -13,10 +13,10 @@
 ## How &amp; Why
 
 Without wasting performance on cross-browser functionality,
-class.js is an _extremely light_ (8 SLOC) class implementation.
+class.js is an **extremely light** (_10-ish SLOC_) class implementation.
 
 By utilizing idiomatic prototypal inheritance techniques this
-implementation is very fast. There is no wrapping or _super_ 
+implementation is **very fast**. There is no wrapping or _super_ 
 hacks involved.
 
 ## Examples
