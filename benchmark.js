@@ -57,4 +57,47 @@ bm('class.js', function(){
   }
 })
 
+// --- Instance Creation
+
+sys.puts('\n  instance creation \n')
+
+bm('prototype instance', function(){
+  var n = times
+  function User(name) {
+    this.name = name.trim()
+  }
+  function Admin(name) {
+    User.call(this, name)
+  }
+  while (n--) new Admin('tj')
+})
+
+bm('sys.inherits() instance', function(){
+  var n = times
+  function User(name) {
+    this.name = name.trim()
+  }
+  function Admin(name) {
+    User.call(this, name)
+  }
+  sys.inherits(Admin, User)
+  
+  while (n--) new Admin('tj')
+})
+
+bm('class.js instance', function(){
+  var n = times
+  var User = new Class({
+    constructor: function(name){
+      this.name = name.trim()
+    }
+  })
+  var Admin = User.extend({
+    constructor: function(name){
+      User.call(this, name)
+    }
+  })
+  while (n--) new Admin('tj')
+})
+
 sys.puts('')
