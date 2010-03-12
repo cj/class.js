@@ -21,6 +21,8 @@ hacks involved.
 
 ## Examples
 
+    var Class = require('class').Class
+
     var User = new Class({
       constructor: function(name){
         this.name = name
