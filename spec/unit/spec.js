@@ -110,7 +110,7 @@ describe 'Class'
         it 'should respond to instanceof properly'
           (new User('tj')).should.be_an_instance_of User
           (new User('tj')).should.not.be_an_instance_of Admin
-          //(new Admin('tj')).should.be_an_instance_of User
+          (new Admin('tj')).should.be_an_instance_of User
           (new Admin('tj')).should.be_an_instance_of Admin
         end
         
