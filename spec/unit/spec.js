@@ -8,6 +8,17 @@ describe 'Class'
     (new Class({})).should.be_an_instance_of Class
   end
   
+  describe 'properties'
+    it 'should be assigned when #extend is present'
+      var User = new Class({
+        extend: {
+          foo: 'bar'
+        }
+      })
+      User.foo.should.eql 'bar'
+    end
+  end
+  
   describe 'instances'
     it 'should be an instance of their respective class'
       var User = new Class({})

@@ -33,6 +33,7 @@ hacks involved.
     })
     
     var Admin = User.extend({
+      extend: { name: 'Admin' },
       constructor: function(name) {
         User.call(this, name.toUpperCase())
       }
@@ -40,6 +41,9 @@ hacks involved.
     
     puts(new Admin('tj'))
     // => "[User TJ]"
+    
+    puts(Admin.name)
+    // => "Admin"
     
 ## Benchmarks
 
