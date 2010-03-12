@@ -3,7 +3,7 @@ require.paths.unshift('lib')
 
 var sys = require('sys'),
     Class = require('class').Class,
-    times = 50000
+    times = 500000
 
 function bm(label, fn) {
   var start = +new Date
@@ -22,6 +22,7 @@ bm('prototype', function(){
     function Admin(name) {
       User.call(this, name)
     }
+    new Admin('tj')
   }
 })
 
@@ -35,6 +36,7 @@ bm('sys.inherits()', function(){
       User.call(this, name)
     }
     sys.inherits(Admin, User)
+    new Admin('tj')
   }
 })
 
@@ -51,6 +53,7 @@ bm('class.js', function(){
         User.call(this, name)
       }
     })
+    new Admin('tj')
   }
 })
 

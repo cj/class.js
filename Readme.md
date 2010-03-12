@@ -10,7 +10,7 @@
   
       $ kiwi -v install class
 
-## How &amp; Why
+## About Class.js
 
 Without wasting performance on cross-browser functionality,
 class.js is an **extremely light** (_10-ish SLOC_) class implementation.
@@ -40,6 +40,20 @@ hacks involved.
     
     puts(new Admin('tj'))
     // => "[User TJ]"
+    
+## Benchmarks
+
+Currently the benchmarks compare regular **prototypal inheritance**,
+node's **sys.inherits()**, and **class.js**. Each subclasses _User_
+as _Admin_, and creates an instance **500,000 times**.
+
+    λ  class.js: node benchmark.js
+
+    running 500000 times
+
+    prototype : 68 ms
+    sys.inherits() : 1512 ms
+    class.js : 1531 ms
 
 ## Running Tests
 
