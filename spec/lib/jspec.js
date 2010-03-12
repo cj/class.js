@@ -1497,8 +1497,7 @@
      */
 
     error : function(message, e) {
-      throw (message ? message : '') + e.toString() + 
-              (e.line ? ' near line ' + e.line : '')
+      throw new Error(message + ': ' + e)
     },
     
     /**

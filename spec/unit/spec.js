@@ -83,7 +83,7 @@ describe 'Class'
     end
     
     describe 'subclassing'
-      describe 'once'
+      describe 'several times'
         before_each
           User = new Class({
             foo: 'foo',
@@ -105,6 +105,13 @@ describe 'Class'
               return '[Admin ' + this.name + ']'
             }
           })
+          
+          SuperUser = Admin.extend({
+            baz: 'raz',
+            toString: function(){
+              return '[SuperUser ' + this.name + ']'
+            }
+          })
         end
         
         it 'should respond to instanceof properly'
@@ -112,16 +119,21 @@ describe 'Class'
           (new User('tj')).should.not.be_an_instance_of Admin
           (new Admin('tj')).should.be_an_instance_of User
           (new Admin('tj')).should.be_an_instance_of Admin
+          (new SuperUser('tj')).should.be_an_instance_of User
+          (new SuperUser('tj')).should.be_an_instance_of Admin
+          (new SuperUser('tj')).should.be_an_instance_of SuperUser
         end
         
         it 'should call constructors properly'
           (new User('tj')).toString().should.eql '[User tj]'
           (new Admin('tj')).toString().should.eql '[Admin TJ]'
+          (new SuperUser('tj')).toString().should.eql '[SuperUser TJ]'
         end
         
         it 'should inherit properties properly'
           (new User('tj')).foo.should.eql 'foo'
           (new Admin('tj')).bar.should.eql 'bar'
+          (new SuperUser('tj')).baz.should.eql 'raz'
         end
       end
     end
