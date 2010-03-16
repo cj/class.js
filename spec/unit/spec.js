@@ -26,7 +26,7 @@ describe 'Class'
       tj.should.be_an_instance_of User
     end
     
-    describe '#constructor'
+    describe '#constructor()'
       it 'should reflect the class when a constructor is not provided'
         var User = new Class({})
         var tj = new User
@@ -54,25 +54,11 @@ describe 'Class'
       end
     end
     
-    describe '#include'
+    describe '.include()'
       it 'should extend the prototype'
         var User = new Class({ foo: 'bar' })
         User.include({ foo: 'baz' })
         (new User('tj')).foo.should.eql 'baz'
-      end
-      
-      it 'should work with constructors'
-        var User = new Class({
-          constructor: function(name) {
-            this.name = name
-          } 
-        })
-        User.include({
-          constructor: function(name){
-            this.name = name.toUpperCase()
-          }
-        })
-        (new User('tj')).name.should.eql 'TJ'
       end
     end
     
