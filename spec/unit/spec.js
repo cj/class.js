@@ -54,6 +54,28 @@ describe 'Class'
       end
     end
     
+    describe '#include'
+      it 'should extend the prototype'
+        var User = new Class({ foo: 'bar' })
+        User.include({ foo: 'baz' })
+        (new User('tj')).foo.should.eql 'baz'
+      end
+      
+      it 'should work with constructors'
+        var User = new Class({
+          constructor: function(name) {
+            this.name = name
+          } 
+        })
+        User.include({
+          constructor: function(name){
+            this.name = name.toUpperCase()
+          }
+        })
+        (new User('tj')).name.should.eql 'TJ'
+      end
+    end
+    
     describe 'getters'
       it 'should work'
         var User = new Class({
