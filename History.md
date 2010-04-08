@@ -1,4 +1,13 @@
 
+0.3.0 / 2010-04-08
+==================
+
+  * Added extended() hook support,
+    passing the subclass to Class.extended() when Class#extend() is called
+  
+  * Added included() hook support
+    passing the superclass to the mixin object when Class#include() is called
+    
 0.2.0 / 2010-03-16
 ==================
 
