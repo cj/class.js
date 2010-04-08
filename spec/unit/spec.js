@@ -61,24 +61,12 @@ describe 'Class'
         (new User('tj')).foo.should.eql 'baz'
       end
       
-      describe 'when self responds to .included()'
-        it 'should call .included() with the class'
-          var Model = new Class({
-            extend: {
-              included: function(obj){}
-            }
-          })
-          Model.should.receive('included').with_args({ foo: 'bar' })
-          Model.include({ foo: 'bar' })
-        end
-      end
-      
       describe 'when the object responds to #included()'
-        it 'should call #included() with the class'
+        it 'should call #included() with the superclass'
           var Model = new Class({})
           var Resource = new Class({
             extend: {
-              included: function(base){}
+              included: function(superclass){}
             }
           })
           Resource.should.receive('included').with_args(Model)
@@ -116,6 +104,19 @@ describe 'Class'
     end
     
     describe 'subclassing'
+      describe 'when self reponds to .extended()'
+        it 'should call .extended() with the subclass'
+          var User = new Class({
+            extend: {
+              extended: function(){}
+            }
+          })
+          var Admin
+          User.should.receive('extended').with_args(Admin)
+          Admin = User.extend({})
+        end
+      end
+    
       describe 'several times'
         before_each
           User = new Class({
