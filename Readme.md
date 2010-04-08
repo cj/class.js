@@ -31,6 +31,12 @@ hacks involved.
     var Class = require('class').Class
 
     var User = new Class({
+      extend: {
+        extended: function(subclass){
+          // called when User.extend() is called,
+          // in this case passes Admin
+        }
+      },
       constructor: function(name){
         this.name = name
       },
@@ -40,17 +46,26 @@ hacks involved.
     })
     
     var Admin = User.extend({
-      extend: { name: 'Admin' },
       constructor: function(name) {
         User.call(this, name.toUpperCase())
       }
     })
     
+    var SomeMixin = new Class({
+      extend: {
+        included: function(superclass){
+          // called when Admin.include()
+          // is called, in this case Admin
+          // will become the contents of "superclass"
+        }
+      },
+      foo: 'bar'
+    })
+    
+    Admin.include(SomeMixin)
+    
     puts(new Admin('tj'))
     // => "[User TJ]"
-    
-    puts(Admin.name)
-    // => "Admin"
     
 ## Benchmarks
 
