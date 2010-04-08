@@ -13,11 +13,18 @@
 ## About Class.js
 
 Without wasting performance on cross-browser functionality,
-class.js is an **extremely light** (_10-ish SLOC_) class implementation.
+class.js is an **extremely light** (_20-ish SLOC_) class implementation.
 
 By utilizing idiomatic prototypal inheritance techniques this
-implementation is **very fast**. There is no wrapping or _super_ 
+implementation is **very fast**. There are no wrapping or _super_ 
 hacks involved.
+
+## Features
+
+  * Fast
+  * Tiny
+  * Mixin support with included() hook
+  * Subclassing support with extended() hook
 
 ## Examples
 
@@ -57,7 +64,7 @@ as _Admin_, and creates an instance **500,000 times**.
 
     prototype : 68 ms
     sys.inherits() : 1512 ms
-    class.js : 1531 ms
+    class.js : 2510 ms
 
 ## Running Tests
 
