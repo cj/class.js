@@ -66,9 +66,7 @@ describe 'Class'
           var Model = new Class({})
           var Resource = new Class({
             extend: {
-              included: function(base){
-                
-              }
+              included: function(base){}
             }
           })
           Resource.should.receive('included').with_args(Model)
