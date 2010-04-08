@@ -60,6 +60,21 @@ describe 'Class'
         User.include({ foo: 'baz' })
         (new User('tj')).foo.should.eql 'baz'
       end
+      
+      describe 'when the object responds to #included()'
+        it 'should call #included() with the class'
+          var Model = new Class({})
+          var Resource = new Class({
+            extend: {
+              included: function(base){
+                
+              }
+            }
+          })
+          Resource.should.receive('included').with_args(Model)
+          Model.include(Resource)
+        end
+      end
     end
     
     describe 'getters'
